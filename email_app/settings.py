@@ -11,10 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -73,10 +72,37 @@ WSGI_APPLICATION = 'email_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+from .decrypt import (decrypt)
+os.listdir(os.path.join(BASE_DIR,'auth'))
+
+db_auth = {'dbname.txt':'key_dbname.txt',
+           'db_pass.txt':'key_db_pass.txt',
+           'host.txt':'key_host.txt',
+           'dbuser.txt':'key_dbuser.txt'}
+filename = {}
+for i in db_auth.keys():
+    with open(r'auth/' +i, 'r') as readfile:
+        filename['{}'.format(i.split('.')[0])]= json.load(readfile)
+
+file_key = {}
+for i in db_auth.keys():
+    with open(r'auth/' +db_auth[i], 'r') as readfile:
+        file_key['{}'.format(db_auth[i].split('.')[0])]= json.load(readfile)
+
+db_auth = {}
+for i in filename.keys():
+    db_auth[i] = decrypt(eval(filename[i]),eval(file_key['key_'+i])).decode("utf-8")
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': db_auth['dbname'],
+        'USER': db_auth['dbuser'],
+        'PASSWORD': db_auth['db_pass'],
+        'HOST': db_auth['host'],
+        'PORT': '3306'
     }
 }
 
