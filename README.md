@@ -8,7 +8,7 @@ An Application which takes the recruiter's email and sends the profile of the ca
 1. Setup the AWS RDS Database with Django. **Done** (&#x1F4D7;)
 
 2. Create the model and create fields in the database using django ORM. **Done**(&#x1F4D7;)
-    - connect with the existing table and manipulate the data: **Done**
+    - connect with the existing table and manipulate the data: **Done**(&#x1F4D7;)
 
 3. Make the Frontend webform and integrate it with Django backend. **In Progress**(&#x1F4D9;)
 
