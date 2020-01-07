@@ -4,18 +4,18 @@
 ! text in orange
 # text in gray
 ```
-+ Done
+
 # Email_Django_App
 An Application which takes the recruiter's email and sends the profile of the candidate to the recruiter. The application also has the options to change the sender's email (this is available and only limited to GMAIL).
 
 ## Steps to create the application
 
-1. Setup the AWS RDS Database with Django. Done
+1. Setup the AWS RDS Database with Django. **Done**
 
-2. Create the model and create fields in the database using django ORM. +Done
-    - connect with the existing table and manipulate the data: In Progress...
+2. Create the model and create fields in the database using django ORM. **Done**
+    - connect with the existing table and manipulate the data: **Done**
 
-3. Make the Frontend webform and integrate it with Django backend.
+3. Make the Frontend webform and integrate it with Django backend. **In Progress**
 
 4. Make the provision to attach the resume.
 
