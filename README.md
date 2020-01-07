@@ -1,4 +1,3 @@
-GREEN BOOK (&#x1F4D7;):
 
 
 # Email_Django_App
@@ -6,7 +5,7 @@ An Application which takes the recruiter's email and sends the profile of the ca
 
 ## Steps to create the application
 
-1. Setup the AWS RDS Database with Django. **Done**
+1. Setup the AWS RDS Database with Django. **Done** (&#x1F4D7;)
 
 2. Create the model and create fields in the database using django ORM. <span style="color:green">**Done**</span>
     - connect with the existing table and manipulate the data: **Done**
