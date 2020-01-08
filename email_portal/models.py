@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.db.models import Model 
 
 # Create your models here.
 class BlogPost(models.Model):
@@ -19,7 +20,7 @@ class CompanyEmail1(models.Model):
     location = models.CharField(db_column='Location', max_length=35, blank=True, null=True)  # Field name made lowercase.
     email_address = models.CharField(db_column='Email_Address', max_length=50, blank=True,primary_key = True)  # Field name made lowercase.
     application_date = models.DateTimeField(db_column='Application_Date', blank=True, null=True)  # Field name made lowercase.
-
+    #id = models.IntegerField(blank=True, primary_key = True)
     class Meta:
         managed = False
         db_table = 'company_email1'
