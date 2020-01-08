@@ -43,7 +43,9 @@ input[type=submit]:hover {
 
 <div class="container">
   <form action="http://127.0.0.1:8000/application_portal/sendmail/" method="post"> {% csrf_token %}
+    <input type="file" id="myFile">
     {{ form.as_p }}
+    
     <input type="password" id="password" name="Password" value="FakePSW" placeholder="xxxx">
     <input type="checkbox" onclick="myFunction()">Show Password
     <script>
