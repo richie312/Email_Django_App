@@ -24,14 +24,17 @@ def user_form(request):
 def Sendmail(request):
     form = ApplicationModelForm(request.POST or None)
     if form.is_valid():
-        form.save(commit = True)
+        form.save(commit = False)
     passw = request.POST.get('Password')
     main_dir = os.getcwd()
     yagmail.register("richie.chatterjee31@gmail.com", passw)
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw,host="smtp.gmail.com")
     image_folder = os.path.join(main_dir,'images')
     template_folder = os.path.join(main_dir,'templates')
-    html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),os.path.join(template_folder,"links.html"),main_dir + "/docs/Resume.pdf"]
+    if request.POST.get('file') == '':
+        html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),os.path.join(template_folder,"links.html"),main_dir + "/docs/Resume.pdf"]
+    else:
+        html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),os.path.join(template_folder,"links.html"),request.FILES.get('file')]   
     Company = form.cleaned_data['company_name']
     Location = form.cleaned_data['location']
     email = form.cleaned_data['email_address']        

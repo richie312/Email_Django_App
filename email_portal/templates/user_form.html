@@ -42,8 +42,34 @@ input[type=submit]:hover {
 <h3>Enter Details</h3>
 
 <div class="container">
-  <form action="http://127.0.0.1:8000/application_portal/sendmail/" method="post"> {% csrf_token %}
-    <input type="file" id="myFile">
+  <form enctype="multipart/form-data" action="http://127.0.0.1:8000/application_portal/sendmail/" method="post"> {% csrf_token %}
+    <h3>Upload Your Resume </h3>
+    <small>(Maximum File Size Allowed 5 Mb)</small>
+    <br><br>
+    <p> <input type="file" id="myfile" name = "file" onchange="Filevalidation()" /> </p> 
+    <p id="size"></p>
+    <script> 
+      Filevalidation = () => { 
+        const fi = document.getElementById('myfile'); 
+        // Check if any file is selected. 
+        if (fi.files.length > 0) { 
+            for (const i = 0; i <= fi.files.length - 1; i++) { 
+  
+                const fsize = fi.files.item(i).size; 
+                const file = Math.round((fsize / 1024)); 
+                // The size of the file. 
+                if (file >= 5120) { 
+                    alert( 
+                      "File too Big, please select a file less than 4mb"); 
+                }  
+                else { 
+                    document.getElementById('size').innerHTML = '<b>'
+                    + file + '</b> KB'; 
+                  } 
+              } 
+          } 
+      } 
+    </script> 
     {{ form.as_p }}
     
     <input type="password" id="password" name="Password" value="FakePSW" placeholder="xxxx">
@@ -60,6 +86,7 @@ input[type=submit]:hover {
     </script>
 
     <input type="text" id="subject" name="Subject" placeholder="Data Science, R/Python Developer">
+    <input type="reset" value="Reset">
     <input type="submit" value="Send Mail">
   </form>
 </div>
